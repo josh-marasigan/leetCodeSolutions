@@ -9,6 +9,7 @@ struct Stack<T> {
 
     mutating func pop() -> T? {
         if !array.isEmpty {
+            // O(1)
             return array.removeLast()
         }
         return nil
@@ -31,6 +32,7 @@ struct Queue<T> {
 
     mutating func dequeue() -> T? {
         if !list.isEmpty {
+            // O(N)
             return list.removeFirst()
         }
         return nil
@@ -345,3 +347,6 @@ var graph =
 
 // DFS Recursice
 //graphSearch.depthFirstSearchRecursive(&graph, source: [0,0], target: -1)
+
+//Solution().numIslands([["1","1","1","1","0"],["1","1","0","1","0"],["1","1","0","0","0"],["0","0","0","0","0"]])
+
