@@ -1,5 +1,19 @@
 import UIKit
 
+/*
+ Different approach to copying matrix in swift:
+ 
+ let ca: [[Int]] = matrix.map { (row) -> [Character] in
+ return row
+ }.map { (val) -> [Int] in
+ var row = [Int]()
+ for i in val {
+ row.append(Int(String(i)) ?? 0)
+ }
+ return row
+ }
+ */
+
 class Solution {
     func maximalSquare(_ matrix: [[Character]]) -> Int {
         guard matrix.count > 0 else { return 0 }
