@@ -340,5 +340,3 @@ print("Shortest Path Visualized - ")
 for row in graph {
     print(row)
 }
-
-
