@@ -1,6 +1,10 @@
 
 // Return minimum # of steps to get to the end
 class Solution {
+    enum TowerHopperError: Error {
+        case InvalidInput
+    }
+    
     struct Queue<Int> {
         var queue = [Int]()
         var startIndex = 0
@@ -19,22 +23,20 @@ class Solution {
         }
     }
     
-    func towerHopperBFS(_ towers: inout [Int]) -> Int? {
+    func towerHopperBFS(_ towers: inout [Int]) throws -> Int {
         guard towers.count > 0, towers[0] > 0 else {
-            return nil
+            throw TowerHopperError.InvalidInput
         }
-        
-        let root = 0
         
         // Key: Index of tower
         // Val: If visited
         var visited = [Int:Bool]()
-        visited[root] = true
+        visited[0] = true
         
         var queue = Queue<Int>()
-        queue.enqueue(root)
-        var found = false
-
+        queue.enqueue(0)
+        
+        var jumps = 0
         while let current = queue.dequeue() {
             visited[current] = true
             
@@ -42,7 +44,7 @@ class Solution {
             
             // Base case: Found
             if nextTower == Int.max {
-                found = true
+                jumps += 1
                 break
             }
             
@@ -50,10 +52,11 @@ class Solution {
                 continue
             }
             
+            jumps += 1
             queue.enqueue(nextTower)
         }
         
-        return found ? 1 : 0
+        return jumps
     }
     
     // Returns list of indexes representing neighbors
@@ -84,11 +87,7 @@ class Solution {
 }
 
 //let towers = [4,2,0,0,9,0,0,0,0,0,0,0,0]
-var towers = [1,1,1,7,0,0,0,0,0,0,1,1,1,7,0,0,0,0,0,0,1,1,1,7,0,0,0,0,0,0,1,1,1,7,0,0,0,0,0,0,1,1,1,7,0,0,0,0,0,0,1,1,1,7,0,0,0,0,0,0]
-let sol = Solution().towerHopperBFS(&towers)
+var towers = [1,1,1,1,1,1,1,1]
+let sol = try Solution().towerHopperBFS(&towers)
+print("Number of hops: \(sol)")
 
-if let steps = sol {
-    print("Number of hops: \(steps)")
-} else {
-    print("No tower paths found.")
-}
