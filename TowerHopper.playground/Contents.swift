@@ -87,7 +87,7 @@ class Solution {
 }
 
 //let towers = [4,2,0,0,9,0,0,0,0,0,0,0,0]
-var towers = [1,1,1,1,1,1,1,1]
+var towers = [2,1]
 let sol = try Solution().towerHopperBFS(&towers)
 print("Number of hops: \(sol)")
 
