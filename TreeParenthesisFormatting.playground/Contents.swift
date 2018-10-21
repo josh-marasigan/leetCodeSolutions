@@ -45,3 +45,6 @@ class Solution {
         return out
     }
 }
+
+let sol = Solution()
+CharacterSet.lowercaseLetters
