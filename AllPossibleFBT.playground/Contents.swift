@@ -31,6 +31,7 @@ class Solution {
             return validTrees
         }
         
+        
         // One level deeper == One node less (the root)
         let nodesLeft = N - 1
         var nodeCount = 1
